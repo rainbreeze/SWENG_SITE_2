@@ -27,6 +27,9 @@ function fetchPostings() {
                     <div class="meta">
                         <span>작성자: ${post.author}</span>
                     </div>
+                    <div class="link">
+                        ${post.link ? `<a href="${post.link}" target="_blank">${post.link}</a>` : '링크 없음'}
+                    </div>
                     <div class="actions">
                         <span>댓글: ${post.comment_num}</span>
                         <span>좋아요: <span id="like-count-${post.id}">${post.good}</span></span>
