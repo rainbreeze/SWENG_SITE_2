@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포스팅 목록</title>
+    <!-- Google Fonts에서 Jua 폰트 불러오기 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/posting-view.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>포스팅 목록</h1>
+
+        <!-- 게시글 필터 -->
+        <div class="filter-group">
+            <label for="type-filter">타입 선택:</label>
+            <select id="type-filter" onchange="filterPostings()">
+                <option value="all">전체</option>
+                <option value="SCRUM">SCRUM</option>
+                <option value="XP">XP</option>
+                <option value="CMM">CMM</option>
+                <option value="DEVOPS">DEVOPS</option>
+            </select>
+        </div>
+
+        <!-- 게시글 목록 -->
+        <div id="post-list-container" class="post-list-container">
+            <!-- 게시글 목록이 여기에 동적으로 추가됩니다 -->
+        </div>
+    </div>
+
+    <script src="../js/posting-view.js"></script>
+</body>
+
+</html>

@@ -42,10 +42,7 @@ function addPosting() {
 function fetchPostings() {
     const selectedType = document.getElementById('type-filter').value;
 
-    let url = `${serverUrl}/postings`;
-    if (selectedType !== 'all') {
-        url += `?type=${selectedType}`;
-    }
+    let url = `${serverUrl}/postings`;  // 서버에서 전체 게시글을 불러옴
 
     fetch(url)
         .then(response => response.json())
@@ -53,7 +50,13 @@ function fetchPostings() {
             const postListContainer = document.getElementById('post-list-container');
             postListContainer.innerHTML = '';  // 기존 목록 초기화
 
-            data.forEach(post => {
+            // 타입 필터링
+            const filteredData = selectedType === 'all' 
+                ? data  // '전체'인 경우 모든 게시글을 표시
+                : data.filter(post => post.type === selectedType);  // 선택된 타입만 필터링
+
+            // 필터링된 게시글 목록을 화면에 표시
+            filteredData.forEach(post => {
                 const postItem = document.createElement('div');
                 postItem.classList.add('post-item');
                 postItem.innerHTML = `
@@ -76,6 +79,21 @@ function fetchPostings() {
         })
         .catch(error => console.error('게시글 목록을 불러오는 데 실패했습니다.', error));
 }
+
+// 게시글 타입 필터링
+function filterPostings() {
+    fetchPostings();  // 필터링 후 게시글 목록을 다시 불러옵니다
+}
+
+// 게시글 타입 필터링
+function filterPostings() {
+    fetchPostings();  // 필터링 후 게시글 목록을 다시 불러옵니다
+}
+
+// 페이지 로드 시 게시글 목록 가져오기
+window.onload = function() {
+    fetchPostings();
+};
 
 // 게시글 삭제
 function deletePosting(postId) {
