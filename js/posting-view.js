@@ -13,7 +13,7 @@ function fetchPostings() {
             postListContainer.innerHTML = '';  // 기존 목록 초기화
 
             // 타입 필터링
-            const filteredData = selectedType === 'all' 
+            const filteredData = selectedType === 'all'
                 ? data  // '전체'인 경우 모든 게시글을 표시
                 : data.filter(post => post.type === selectedType);  // 선택된 타입만 필터링
 
@@ -58,24 +58,27 @@ function likePost(postId) {
         },
         body: JSON.stringify({ postId: postId })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message === '좋아요 수가 증가했습니다.') {
-            // 좋아요가 정상적으로 추가되면 좋아요 수 업데이트
-            let currentLikes = parseInt(likeCountElement.textContent);
-            likeCountElement.textContent = currentLikes + 1;
-            likeButton.disabled = true;  // 좋아요 버튼을 비활성화 (다시 눌리지 않도록)
-            alert('좋아요를 추가했습니다.');
-        } else {
-            alert('좋아요 추가에 실패했습니다.');
-        }
-    })
-    .catch(error => {
-        console.error('좋아요 추가 실패:', error);
-        alert('서버 오류로 좋아요 추가에 실패했습니다.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === '좋아요 수가 증가했습니다.') {
+                // 좋아요가 정상적으로 추가되면 좋아요 수 업데이트
+                let currentLikes = parseInt(likeCountElement.textContent);
+                likeCountElement.textContent = currentLikes + 1;
+                likeButton.disabled = true;  // 좋아요 버튼을 비활성화 (다시 눌리지 않도록)
+                alert('좋아요를 추가했습니다.');
+            } else {
+                alert('좋아요 추가에 실패했습니다.');
+            }
+        })
+        .catch(error => {
+            console.error('좋아요 추가 실패:', error);
+            alert('서버 오류로 좋아요 추가에 실패했습니다.');
+        });
 }
-
+// 필터링 함수
+function filterPostings() {
+    fetchPostings();  // 필터링 후 게시글 목록을 다시 불러오기
+}
 // 댓글 조회 페이지로 이동
 function viewComments(postId) {
     // 댓글 조회 페이지로 이동하면서 게시글 ID를 URL에 포함
@@ -83,7 +86,7 @@ function viewComments(postId) {
 }
 
 // 페이지 로드 시 게시글 목록 가져오기
-window.onload = function() {
+window.onload = function () {
     fetchPostings();
 };
 
