@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>댓글 보기</title>
+    
+    <!-- Google Fonts에서 Jua 폰트 불러오기 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/comment.css">  <!-- 댓글 CSS 스타일 링크 -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>댓글 목록</h1>
+        
+        <!-- 댓글 목록 표시 부분 -->
+        <div id="comment-list-container" class="comment-list-container">
+            <!-- 댓글 목록이 여기에 동적으로 추가됩니다 -->
+        </div>
+        
+        <!-- 댓글 추가 폼 -->
+        <div class="comment-form">
+            <h2>댓글 작성</h2>
+            <input type="text" id="comment-input" placeholder="댓글을 입력하세요..." class="comment-input">
+            <button id="submit-comment" class="submit-comment">댓글 추가</button>
+        </div>
+    </div>
+
+    <script src="../js/comment.js"></script>  <!-- 댓글 관련 JavaScript 파일 연결 -->
+</body>
+
+</html>

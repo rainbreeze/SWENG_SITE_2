@@ -86,3 +86,6 @@ function viewComments(postId) {
 window.onload = function() {
     fetchPostings();
 };
+
+
+

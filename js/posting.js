@@ -80,21 +80,6 @@ function fetchPostings() {
         .catch(error => console.error('게시글 목록을 불러오는 데 실패했습니다.', error));
 }
 
-// 게시글 타입 필터링
-function filterPostings() {
-    fetchPostings();  // 필터링 후 게시글 목록을 다시 불러옵니다
-}
-
-// 게시글 타입 필터링
-function filterPostings() {
-    fetchPostings();  // 필터링 후 게시글 목록을 다시 불러옵니다
-}
-
-// 페이지 로드 시 게시글 목록 가져오기
-window.onload = function() {
-    fetchPostings();
-};
-
 // 게시글 삭제
 function deletePosting(postId) {
     const username = localStorage.getItem('username');  // 로컬스토리지에서 현재 사용자 이름 가져오기
@@ -116,7 +101,7 @@ function deletePosting(postId) {
         .then(data => {
             if (data.message) {
                 alert(data.message);
-                if (data.message === '게시글이 삭제되었습니다.') {
+                if (data.message === '게시글과 관련된 댓글이 모두 삭제되었습니다.') {
                     fetchPostings();  // 게시글 목록을 다시 불러옵니다
                 }
             }
@@ -137,3 +122,4 @@ function filterPostings() {
 window.onload = function() {
     fetchPostings();
 };
+
