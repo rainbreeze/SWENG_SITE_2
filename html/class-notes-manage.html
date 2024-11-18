@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수업 메모 관리</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/class-notes-manage.css">  <!-- CSS 파일 링크 -->
+</head>
+<body>
+    <header>
+        <h1>수업 메모 관리</h1>
+    </header>
+
+    <main>
+        <!-- 메모 입력 폼 -->
+        <section id="memo-form">
+            <h2>새 메모 추가</h2>
+            <form id="memo-form" onsubmit="submitMemo(event)">
+                <label for="memo_date">날짜</label>
+                <input type="date" id="memo_date" required><br>
+
+                <label for="memo_content">내용</label>
+                <textarea id="memo_content" required></textarea><br>
+
+                <label for="memo_pdf">PDF 파일 링크 (선택)</label>
+                <input type="url" id="memo_pdf" placeholder="https://example.com/your-pdf-file.pdf"><br>
+
+                <button type="submit">메모 추가</button>
+            </form>
+        </section>
+
+        <!-- 메모 목록 -->
+        <section id="memo-list">
+            <h2>메모 목록</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>내용</th>
+                        <th>파일 링크</th>
+                        <th>옵션</th>
+                    </tr>
+                </thead>
+                <tbody id="memo-table-body">
+                    <!-- 메모 목록이 동적으로 여기에 삽입됩니다. -->
+                </tbody>
+                <p id="no-memos" style="display:none; color: red;">메모가 없습니다.</p> <!-- 메모가 없을 때 표시할 문구 -->
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 교육 플랫폼</p>
+    </footer>
+
+    <!-- JavaScript 파일 연결 -->
+    <script src="../js/class-notes-manage.js"></script>
+</body>
+</html>

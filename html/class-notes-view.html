@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수업 메모 목록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/class-notes-view.css"> <!-- CSS 파일 연결 -->
+</head>
+<body>
+    <header>
+        <h1>수업 메모 목록</h1>
+    </header>
+
+    <main>
+        <!-- 메모 목록 -->
+        <section id="memo-list">
+            <h2>전체 메모</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>내용</th>
+                        <th>파일 링크</th>
+                    </tr>
+                </thead>
+                <tbody id="memo-table-body">
+                    <!-- 메모 목록이 동적으로 여기에 삽입됩니다. -->
+                </tbody>
+                <p id="no-memos" style="display:none; color: red;">메모가 없습니다.</p> <!-- 메모가 없을 때 표시할 문구 -->
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 교육 플랫폼</p>
+    </footer>
+
+    <script src="../js/class-notes-view.js"></script> <!-- JS 파일 연결 -->
+</body>
+</html>
