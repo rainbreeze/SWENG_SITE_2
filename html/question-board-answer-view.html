@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>답변 목록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>답변 목록</h1>
+    </header>
+
+    <main>
+        <section id="answers-list-section">
+            <h2>모든 답변</h2>
+            <ul id="answers-list">
+                <!-- 답변 목록이 여기에 동적으로 표시됩니다. -->
+            </ul>
+            <div id="no-answers-message" style="display: none;">
+                <p>답변이 없습니다.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 교육 플랫폼</p>
+    </footer>
+
+    <script>
+        const serverUrl = 'https://swengserver2-production.up.railway.app';  // 서버 URL 설정
+        const urlParams = new URLSearchParams(window.location.search);
+        const questionId = urlParams.get('id');  // URL에서 질문 ID를 가져옵니다.
+        console.log(questionId);
+
+        // 페이지 로드 시 답변 목록을 불러오기
+        window.onload = async function () {
+            try {
+                const response = await fetch(`${serverUrl}/answers/${questionId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const answers = data.answers;
+
+                    const answersListElement = document.getElementById('answers-list');
+                    const noAnswersMessage = document.getElementById('no-answers-message');
+
+                    // 답변 목록을 HTML에 표시
+                    answersListElement.innerHTML = '';  // 기존 내용 비우기
+
+                    if (answers.length > 0) {
+                        answers.forEach(answer => {
+                            const listItem = document.createElement('li');
+                            
+                            listItem.innerHTML = `
+                                <strong>답변 작성자:</strong> ${answer.user_name} <br>
+                                <strong>답변 내용:</strong> ${answer.answer_text} <br>
+                                <small>작성일: ${answer.created_at}</small><br>
+                            `;
+                            answersListElement.appendChild(listItem);
+                        });
+
+                        // 답변이 있으면 "답변이 없습니다." 메시지 숨기기
+                        noAnswersMessage.style.display = 'none';
+                    } else {
+                        // 답변이 없으면 "답변이 없습니다." 메시지 표시
+                        noAnswersMessage.style.display = 'block';
+                    }
+                } else {
+                    alert('답변 목록을 불러오는데 실패했습니다.');
+                }
+            } catch (err) {
+                console.error('답변 목록 불러오기 실패:', err);
+                alert('서버 오류');
+            }
+        };
+    </script>
+</body>
+
+</html>

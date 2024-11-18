@@ -114,7 +114,7 @@ document.getElementById('button-6').addEventListener('click', function() {
     
     if (role === '멘토') {
         // 멘토일 경우 질문 답변 페이지로 이동
-        window.location.href = '/html/question-board-answer.html';
+        window.location.href = '/html/question-board-view.html';
     } else if (role === '멘티') {
         // 멘티일 경우 질문 작성 페이지로 이동
         window.location.href = '/html/question-board-ask.html';

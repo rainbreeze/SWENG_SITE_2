@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 목록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>질문 목록</h1>
+    </header>
+
+    <main>
+        <section id="questions-list-section">
+            <h2>모든 질문</h2>
+            <ul id="questions-list">
+                <!-- 질문 목록이 여기에 동적으로 표시됩니다. -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 교육 플랫폼</p>
+    </footer>
+
+    <script>
+        const serverUrl = 'https://swengserver2-production.up.railway.app';  // 서버 URL 설정
+
+        // 페이지 로드 시 질문 목록을 불러오기
+        window.onload = async function() {
+            try {
+                const response = await fetch(`${serverUrl}/questions`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const questions = data.questions;
+
+                    // 질문 목록을 HTML에 표시
+                    const questionsListElement = document.getElementById('questions-list');
+                    questionsListElement.innerHTML = '';  // 기존 내용 비우기
+
+                    questions.forEach(question => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <strong>질문 작성자:</strong> ${question.user_name} <br>
+                            <strong>질문 내용:</strong> ${question.question_text} <br>
+                            <small>작성일: ${question.created_at}</small><br>
+                            <button onclick="location.href='/html/question-board-answer.html?id=${question.id}'">답변하기</button>
+                        `;
+                        questionsListElement.appendChild(listItem);
+                    });
+                } else {
+                    alert('질문 목록을 불러오는데 실패했습니다.');
+                }
+            } catch (err) {
+                console.error('질문 목록 불러오기 실패:', err);
+                alert('서버 오류');
+            }
+        };
+    </script>
+</body>
+</html>

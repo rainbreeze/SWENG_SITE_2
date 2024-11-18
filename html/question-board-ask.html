@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 작성 및 목록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>질문 작성 페이지</h1>
+    </header>
+
+    <main>
+        <!-- 질문 작성 폼 -->
+        <section id="ask-section">
+            <h2>새 질문을 작성하세요</h2>
+            <form id="ask-form">
+                <label for="question-text">질문 내용</label>
+                <textarea id="question-text" name="question-text" rows="4" required></textarea>
+                <button type="submit">질문 제출</button>
+            </form>
+        </section>
+
+        <!-- 질문 목록 보기 -->
+        <section id="questions-list-section">
+            <h2>모든 질문</h2>
+            <ul id="questions-list">
+                <!-- 질문 목록이 여기에 동적으로 표시됩니다. -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 교육 플랫폼</p>
+    </footer>
+
+    <script>
+        const serverUrl = 'https://swengserver2-production.up.railway.app';  // 서버 URL 설정
+
+        // 페이지 로드 시 질문 목록을 불러오기
+        window.onload = async function () {
+            try {
+                const response = await fetch(`${serverUrl}/questions`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const questions = data.questions;
+
+                    // 질문 목록을 HTML에 표시
+                    const questionsListElement = document.getElementById('questions-list');
+                    questionsListElement.innerHTML = '';  // 기존 내용 비우기
+
+                    questions.forEach(question => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <strong>질문 작성자:</strong> ${question.user_name} <br>
+                            <strong>질문 내용:</strong> ${question.question_text} <br>
+                            <small>작성일: ${question.created_at}</small><br>
+                            <button onclick="window.location.href='/html/question-board-answer-view.html?id=${question.id}'">답변 보기</button>
+                            <button onclick="deleteQuestion(${question.id})">삭제</button> <!-- 삭제 버튼 추가 -->
+                        `;
+                        questionsListElement.appendChild(listItem);
+                    });
+                } else {
+                    alert('질문 목록을 불러오는데 실패했습니다.');
+                }
+            } catch (err) {
+                console.error('질문 목록 불러오기 실패:', err);
+                alert('서버 오류');
+            }
+        };
+
+        // 질문 작성 폼 제출 처리
+        document.getElementById('ask-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const questionText = document.getElementById('question-text').value;
+            const userName = localStorage.getItem('username'); // 로컬스토리지에서 사용자 이름 가져오기
+
+            if (!userName) {
+                alert('로그인 상태가 아닙니다. 로그인 후 다시 시도해주세요.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${serverUrl}/questions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question_text: questionText,
+                        user_name: userName
+                    })
+                });
+
+                if (response.ok) {
+                    alert('질문이 성공적으로 제출되었습니다.');
+                    window.location.reload(); // 페이지 새로고침하여 새로운 질문을 반영
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
+            } catch (err) {
+                console.error('질문 제출 실패:', err);
+                alert('서버 오류');
+            }
+        });
+
+        // 질문 삭제 함수
+        async function deleteQuestion(questionId) {
+            if (confirm('정말로 이 질문을 삭제하시겠습니까?')) {
+                try {
+                    const response = await fetch(`${serverUrl}/questions/${questionId}`, {
+                        method: 'DELETE',
+                    });
+                    console.log(response);
+
+                    if (response.ok) {
+                        alert('질문이 삭제되었습니다.');
+                        window.location.reload(); // 삭제 후 페이지 새로고침하여 목록 업데이트
+                    } else {
+                        const data = await response.json();
+                        alert(data.message);
+                    }
+                } catch (err) {
+                    console.error('질문 삭제 실패:', err);
+                    alert('서버 오류');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
