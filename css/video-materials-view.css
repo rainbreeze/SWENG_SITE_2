@@ -1,0 +1,73 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #0077cc;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* 비디오 컨테이너 */
+#video-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    min-height: 80vh; /* 화면의 80% 높이 */
+    padding: 20px; /* 비디오 주변에 여백 추가 */
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%; /* 부모 컨테이너에 맞게 비디오 크기 설정 */
+    max-width: 900px; /* 최대 너비 설정 */
+    padding-top: 56.25%; /* 16:9 비율 유지 (높이 56.25%가 16:9 비율) */
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden; /* 비디오가 벗어나지 않게 */
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* 모바일 화면에서 비디오 크기 조정 */
+@media (max-width: 768px) {
+    .video-wrapper {
+        max-width: 100%; /* 화면이 작으면 최대 너비를 100%로 설정 */
+        padding-top: 56.25%; /* 16:9 비율 유지 */
+    }
+}
+
+/* 작은 화면에서 비디오 크기 및 중앙 배치 강화 */
+@media (max-width: 480px) {
+    #video-container {
+        min-height: 70vh; /* 작은 화면에서는 비디오 크기 조금 더 작게 설정 */
+    }
+}

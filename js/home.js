@@ -21,8 +21,8 @@ window.onload = function () {
         if (role === '멘토') {
             button1.innerText = '포스팅 공유';   // 멘토는 포스팅 공유
             button2.innerText = '수업 메모 관리'; // 멘토는 수업 메모 관리
-            button3.innerText = '영상 자료 업로드'; // 멘토는 영상 자료 업로드
-            button4.innerText = '과제/시험 관리';  // 멘토는 과제/시험 관리
+            button3.innerText = '영상 자료'; // 멘토는 영상 자료 업로드
+            button4.innerText = '과제/시험';  // 멘토는 과제/시험 관리
             button5.innerText = '상담 관리';  // 멘토는 상담 관리
             button6.innerText = '질문 답변';   // 멘토는 질문 답변
         } 
@@ -31,8 +31,8 @@ window.onload = function () {
         else if (role === '멘티') {
             button1.innerText = '포스팅 보기';   // 멘티는 포스팅 보기
             button2.innerText = '수업 메모 보기'; // 멘티는 수업 메모 보기
-            button3.innerText = '영상 자료 보기'; // 멘티는 영상 자료 보기
-            button4.innerText = '과제/시험 확인'; // 멘티는 과제/시험 확인
+            button3.innerText = '영상 자료'; // 멘티는 영상 자료 보기
+            button4.innerText = '과제/시험'; // 멘티는 과제/시험 확인
             button5.innerText = '상담 요청'; // 멘티는 상담 요청
             button6.innerText = '질문 작성';   // 멘티는 질문 작성
         }
@@ -75,7 +75,7 @@ document.getElementById('button-3').addEventListener('click', function() {
     
     if (role === '멘토') {
         // 멘토일 경우 영상 자료 업로드 페이지로 이동
-        window.location.href = '/html/video-material-upload.html';
+        window.location.href = '/html/video-materials-view.html';
     } else if (role === '멘티') {
         // 멘티일 경우 영상 자료 보기 페이지로 이동
         window.location.href = '/html/video-materials-view.html';
