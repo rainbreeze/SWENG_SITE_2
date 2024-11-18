@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>준비중</title>
+    <style>
+        /* 전체 페이지 스타일 */
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        /* 준비중 텍스트 스타일 */
+        .coming-soon {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ff6f61;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards, bounce 1s infinite;
+        }
+
+        /* 애니메이션: 글씨 서서히 나타나기 */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* 애니메이션: 텍스트가 튕기는 효과 */
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            70% {
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* 부가 텍스트 스타일 */
+        .message {
+            font-size: 1.2rem;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        /* 버튼 스타일 */
+        .back-button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="coming-soon">준비중</div>
+    <div class="message">서비스가 곧 시작됩니다. 조금만 기다려 주세요!</div>
+    <button class="back-button" onclick="window.history.back()">뒤로 가기</button>
+</body>
+
+</html>

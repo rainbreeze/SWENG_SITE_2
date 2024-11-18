@@ -101,10 +101,10 @@ document.getElementById('button-5').addEventListener('click', function() {
     
     if (role === '멘토') {
         // 멘토일 경우 상담 관리 페이지로 이동
-        window.location.href = '/html/counseling-manage.html';
+        window.location.href = '/html/counseling.html';
     } else if (role === '멘티') {
         // 멘티일 경우 상담 요청 페이지로 이동
-        window.location.href = '/html/counseling-request.html';
+        window.location.href = '/html/counseling.html';
     }
 });
 
