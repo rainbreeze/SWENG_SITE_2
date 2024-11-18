@@ -88,10 +88,10 @@ document.getElementById('button-4').addEventListener('click', function() {
     
     if (role === '멘토') {
         // 멘토일 경우 과제/시험 관리 페이지로 이동
-        window.location.href = '/html/assignments-exams-manage.html';
+        window.location.href = '/html/assignments-exams.html';
     } else if (role === '멘티') {
         // 멘티일 경우 과제/시험 확인 페이지로 이동
-        window.location.href = '/html/assignments-exams-view.html';
+        window.location.href = '/html/assignments-exams.html';
     }
 });
 
