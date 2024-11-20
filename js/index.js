@@ -25,7 +25,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
     const role = document.getElementById('register-role').value;
 
     try {
-        const response = await fetch('https://swengserver2-production.up.railway.app/register', {
+        const response = await fetch('https://swengserver2-production.up.railway.app/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     const password = document.getElementById('login-password').value;
 
     try {
-        const response = await fetch('https://swengserver2-production.up.railway.app/login', {
+        const response = await fetch('https://swengserver2-production.up.railway.app/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
